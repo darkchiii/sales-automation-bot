@@ -1,0 +1,51 @@
+OrderID,CustomerName,Product,Quantity,Price,Date
+1001,Michał Nowicki,Tablet,1,2000,2025-08-06
+1002,Katarzyna Krawczyk,Webcam,4,1200,2025-08-23
+1003,Paweł Maj,Webcam,2,600,2025-08-12
+1004,Paweł Maj,Headphones,3,1200,2025-08-21
+1005,Piotr Wiśniewski,Docking Station,3,1800,2025-08-26
+1006,Paweł Maj,Docking Station,1,600,2025-08-21
+1007,Katarzyna Krawczyk,Docking Station,4,2400,2025-08-22
+1008,Anna Kowalska,Headphones,3,1200,2025-08-14
+1009,Tomasz Lis,Mouse,2,240,2025-08-29
+1010,Tomasz Lis,Mouse,3,360,2025-08-20
+1011,Katarzyna Krawczyk,Tablet,2,4000,2025-08-13
+1012,Ewa Zielińska,Docking Station,5,3000,2025-08-24
+1013,Paweł Maj,Laptop,1,3500,2025-08-02
+1014,Maria Wiśniewska,Mouse,2,240,2025-08-29
+1015,Tomasz Lis,Laptop,2,7000,2025-08-01
+1016,Michał Nowicki,Docking Station,4,2400,2025-08-23
+1017,Maria Wiśniewska,Webcam,2,600,2025-08-11
+1018,Katarzyna Krawczyk,Docking Station,1,600,2025-08-10
+1019,Michał Nowicki,Monitor,4,3600,2025-08-29
+1020,Joanna Dąbrowska,Webcam,2,600,2025-08-28
+1021,Paweł Maj,Mouse,3,360,2025-08-16
+1022,Tomasz Lis,Tablet,5,10000,2025-08-25
+1023,Anna Kowalska,Monitor,1,900,2025-08-01
+1024,Maria Wiśniewska,Monitor,2,1800,2025-08-27
+1025,Ewa Zielińska,Mouse,3,360,2025-08-19
+1026,Jan Nowak,Monitor,2,1800,2025-08-02
+1027,Anna Kowalska,Tablet,2,4000,2025-08-27
+1028,Paweł Maj,Mouse,3,360,2025-08-12
+1029,Piotr Wiśniewski,Monitor,4,3600,2025-08-10
+1030,Anna Kowalska,Webcam,3,900,2025-08-02
+1031,Michał Nowicki,Laptop,4,14000,2025-08-01
+1032,Michał Nowicki,Laptop,4,14000,2025-08-26
+1033,Anna Kowalska,Monitor,2,1800,2025-08-22
+1034,Katarzyna Krawczyk,Laptop,2,7000,2025-08-19
+1035,Ewa Zielińska,Webcam,4,1200,2025-08-29
+1036,Anna Kowalska,Docking Station,3,1800,2025-08-02
+1037,Piotr Wiśniewski,Mouse,5,600,2025-08-26
+1038,Maria Wiśniewska,Docking Station,3,1800,2025-08-26
+1039,Michał Nowicki,Docking Station,5,3000,2025-08-21
+1040,Anna Kowalska,Mouse,5,600,2025-08-11
+1041,Katarzyna Krawczyk,Laptop,4,14000,2025-08-24
+1042,Michał Nowicki,Mouse,1,120,2025-08-24
+1043,Tomasz Lis,Webcam,5,1500,2025-08-14
+1044,Anna Kowalska,Tablet,5,10000,2025-08-09
+1045,Ewa Zielińska,Tablet,1,2000,2025-08-06
+1046,Joanna Dąbrowska,Tablet,5,10000,2025-08-16
+1047,Paweł Maj,Webcam,2,600,2025-08-21
+1048,Maria Wiśniewska,Headphones,2,800,2025-08-03
+1049,Michał Nowicki,Keyboard,2,500,2025-08-03
+1050,Katarzyna Krawczyk,Keyboard,2,500,2025-08-15

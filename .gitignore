@@ -5,6 +5,15 @@ build/
 dist/
 wheels/
 *.egg-info
+.env
+fetch_data.ipynb
+
+# Test files
+tests/
+pandas_test.py
+pandas.md
+
+credentials.json
 
 # Virtual environments
 .venv
