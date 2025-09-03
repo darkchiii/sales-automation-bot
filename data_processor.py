@@ -1,27 +1,5 @@
-import gspread
-from google.oauth2.service_account import Credentials
 import pandas as pd
-from datetime import date
-import os
-from dotenv import load_dotenv
-
-
-scopes = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-]
-
-creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
-client = gspread.authorize(creds)
-
-load_dotenv()
-spreadheet_key = os.getenv('SPREADSHEET_KEY')
-sheet = client.open_by_key().sheet1
-
-data = sheet.get_all_records()
-df = pd.DataFrame(data)
-# print(data[:5])
-
+from datetime import date, datetime, timedelta
 
 RULES = {
     "OrderID": {
@@ -49,20 +27,22 @@ RULES = {
     }
 }
 
-def validate_data():
+def validate_data(df):
+    df_copy = df.copy()
+    df_copy["Date"] = pd.to_datetime(df_copy["Date"])
+
     for column, rules in RULES.items():
         if rules["type"] in [int, float]:
-            df[column] = pd.to_numeric(df[column], errors="coerce")
+            df_copy[column] = pd.to_numeric(df_copy[column], errors="coerce")
         elif rules["type"] == "date":
-            df[column] = pd.to_datetime(df[column], errors="coerce")
+            df_copy[column] = pd.to_datetime(df_copy[column], errors="coerce")
 
     all_errors = []
 
-
-    for i, row in df.iterrows():
+    for i, row in df_copy.iterrows():
         errors = []
         for column, rules in RULES.items():
-            print(f"{i+1} iteracja:")
+            # print(f"{i+1} iteracja:")
             # print(row[column])
             # print(rules["required"])
 
@@ -73,11 +53,24 @@ def validate_data():
                 if not pd.api.types.is_numeric_dtype(type(row[column])):
                     errors.append(f"{column}: Error data type")
 
-
             if "min" in rules and not pd.isnull(row[column]) and row[column] < rules["min"]:
                 errors.append(f"{column}: Value error")
 
-        print(f"Row {i} errors: {errors}")
+        # print(f"Row {i} errors: {errors}")
         all_errors.append("; ".join(errors))
-    df["error_flags"] = all_errors
+    df_copy["error_flags"] = all_errors
 
+    errors_only = [err for err in all_errors if err]
+    df_copy = df_copy.fillna("")
+
+    return df_copy, errors_only
+
+def update_total_cost_column(df):
+    df["Total cost"] = df["Quantity"] * df["Price"]
+
+    # df = df.fillna("")
+    if pd.api.types.is_datetime64_any_dtype(df["Date"]):
+        df["Date"] = df["Date"].dt.strftime("%Y-%m-%d")
+
+def save_to_sheets(df, sheet):
+    sheet.update([df.columns.values.tolist()] + df.values.tolist())
