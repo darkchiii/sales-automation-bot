@@ -7,9 +7,19 @@ from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+def generate_diagram(title, data):
+    fig = px.line(data, x=data.index, y="Total cost", title=f"title")
+    fig.show()
+
 # Daily sales raport
 def get_daily_sales(df):
     daily_sales = df.groupby("Date")["Total cost"].sum()
+
+    if input("Do you want to generate diagram? (y/n): ") == 'y':
+        title = input("Title: ").strip()
+        if not title:
+            title="Daily sales report"
+        generate_diagram(title=title, data=daily_sales)
     return daily_sales
 
 # Sales analysis; define time period in days or start and end date of time you are interested in
@@ -70,3 +80,4 @@ def top_customers(df):
     top_customers = top_customers.drop(columns="last_order").sort_values(by="num_orders", ascending=False)
 
     return top_customers
+
