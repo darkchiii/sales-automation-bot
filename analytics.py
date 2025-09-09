@@ -10,6 +10,7 @@ import plotly.express as px
 def generate_diagram(title, data):
     fig = px.line(data, x=data.index, y="Total cost", title=f"title")
     fig.show()
+    return fig
 
 # Daily sales raport
 def get_daily_sales(df):
