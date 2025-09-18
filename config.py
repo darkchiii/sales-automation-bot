@@ -5,6 +5,7 @@ load_dotenv()
 
 class Config:
     SPREADSHEET_KEY = os.getenv('SPREADSHEET_KEY')
+    TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
     CHART_WIDTH = 800
     CHART_HEIGHT = 500

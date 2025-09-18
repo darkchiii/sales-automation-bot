@@ -25,37 +25,37 @@ def main():
         save_to_sheets(clean_df, sheet)
         print("Saved")
 
-    # print("\nData Analysis:")
+    print("\nData Analysis:")
 
-    # # Daily sales analysis
-    # daily_sales = get_daily_sales(clean_df)
-    # print("Daily Sales:")
-    # print(daily_sales.tail(7))
+    # Daily sales analysis
+    daily_sales = get_daily_sales(clean_df)
+    print("Daily Sales:")
+    print(daily_sales.tail(7))
 
-    # # Sales analysis for the last 30 days
-    # sales_30_days = sales_analysis(clean_df, time_period=30)
-    # print("\nSales (last 30 days):")
-    # print(sales_30_days)
+    # Sales analysis for the last 30 days
+    sales_30_days = sales_analysis(clean_df, time_period=30)
+    print("\nSales (last 30 days):")
+    print(sales_30_days)
 
-    # #  Sales analysis for a selected period
-    # sales_period = sales_analysis(clean_df, start_date="2025-08-06", end_date="2025-08-15")
-    # print("\nSales (2025-08-06 to 2025-08-15):")
-    # print(sales_period)
+    #  Sales analysis for a selected period
+    sales_period = sales_analysis(clean_df, start_date="2025-08-06", end_date="2025-08-15")
+    print("\nSales (2025-08-06 to 2025-08-15):")
+    print(sales_period)
 
-    # # Top products for all time
-    # top_products = products_performance(clean_df)
-    # #time_period=30
-    # # print("\nTop Products for last 30 days ")
-    # print(top_products.head())
+    # Top products for all time
+    top_products = products_performance(clean_df)
+    #time_period=30
+    # print("\nTop Products for last 30 days ")
+    print(top_products.head())
 
-    # # # Top products for a selected period
-    # top_products = products_performance(clean_df, start_date="2025-08-06", end_date="2025-08-15")
-    # print("\nTop products (2025-08-06 to 2025-08-15):")
+    # # Top products for a selected period
+    top_products = products_performance(clean_df, start_date="2025-08-06", end_date="2025-08-15")
+    print("\nTop products (2025-08-06 to 2025-08-15):")
 
-    # # # Top customers
-    # best_customers = top_customers(clean_df)
-    # print("\nTop Customers:")
-    # print(best_customers.head())
+    # # Top customers
+    best_customers = top_customers(clean_df)
+    print("\nTop Customers:")
+    print(best_customers.head())
 
 
     # Test

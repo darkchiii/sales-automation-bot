@@ -67,7 +67,7 @@ Dependencies are managed with **uv** and fully tracked in `uv.lock`. Key package
 * **google-auth** - Google API authentication
 * **python-dotenv** - Environment variables
 
-## ⚙️ Installation
+## Installation
 
 1. **Clone the repository:**
 

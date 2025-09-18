@@ -33,8 +33,13 @@ def sales_analysis(df, time_period=None, start_date=None, end_date=None):
     if time_period:
         # time_period = 30
         start_date = datetime.now() - timedelta(time_period)
-        sales = df_copy[df_copy["Date"] >= start_date].groupby("Date")["Total cost"].sum()
-        return sales
+
+        filtered_data = df_copy[df_copy["Date"] >= start_date]
+        # sales_sum = filtered_data["Total cost"].sum()
+        sales_daily = filtered_data.groupby("Date")["Total cost"].sum().reset_index()
+
+        # sales = df_copy[df_copy["Date"] >= start_date].groupby("Date")["Total cost"].sum()
+        return sales_daily
     elif start_date and end_date:
         sales = df_copy[(df_copy["Date"] >= start_date) & (df_copy["Date"] <= end_date)].groupby("Date")["Total cost"].sum()
         return sales
@@ -82,3 +87,20 @@ def top_customers(df):
 
     return top_customers
 
+if __name__ == "__main__":
+    # Test data
+
+    import pandas as pd
+    today = datetime.now().date()
+
+    test_data = {
+        'Date': [today, today - timedelta(1), today - timedelta(2)] * 2,
+        'Total cost': [100, 200, 150, 50, 75, 25]
+    }
+    df = pd.DataFrame(test_data)
+
+    daily, total = sales_analysis(df, time_period=7)
+    print(f"Total sum: {total}")
+    print(f"Daily breakdown:")
+    print(daily)
+    print(f"Daily as dict: {daily.to_dict()}")
