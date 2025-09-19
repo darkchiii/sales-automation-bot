@@ -2,11 +2,11 @@ from datetime import datetime, timedelta
 import logging
 from telegram import Update, InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, InlineQueryHandler
-from config import Config
+from src.utils.config import Config
 
-from data_loader import load_data
-from data_processor import validate_data, update_total_cost_column
-from analytics import sales_analysis, products_performance
+from src.core.data_loader import load_data
+from src.core.data_processor import validate_data, update_total_cost_column
+from src.core.analytics import sales_analysis, products_performance
 
 import plotly.express as px
 import io
