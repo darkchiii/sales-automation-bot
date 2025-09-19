@@ -1,6 +1,6 @@
-from data_processor import validate_data, update_total_cost_column, save_to_sheets
-from data_loader import load_data
-from analytics import get_daily_sales, sales_analysis, products_performance, top_customers
+from src.core.data_processor import validate_data, update_total_cost_column, save_to_sheets
+from src.core.data_loader import load_data
+from src.core.analytics import get_daily_sales, sales_analysis, products_performance, top_customers
 import pandas as pd
 
 def main():
@@ -57,7 +57,6 @@ def main():
     print("\nTop Customers:")
     print(best_customers.head())
 
-
     # Test
     # empty_df = pd.DataFrame()
     # validate_data(empty_df)
@@ -70,5 +69,5 @@ def main():
     #     clean_df, errors = result
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

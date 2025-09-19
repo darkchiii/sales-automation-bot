@@ -1,6 +1,6 @@
-from data_processor import validate_data, update_total_cost_column, save_to_sheets
-from data_loader import load_data
-from analytics import get_daily_sales, sales_analysis, products_performance, top_customers
+from src.core.data_processor import validate_data, update_total_cost_column, save_to_sheets
+from src.core.data_loader import load_data
+from src.core.analytics import get_daily_sales, sales_analysis, products_performance, top_customers
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st

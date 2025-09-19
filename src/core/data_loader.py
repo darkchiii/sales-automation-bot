@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import os
 from dotenv import load_dotenv
-from config import Config
+from src.utils.config import Config
 
 # Connect with Google Sheets
 

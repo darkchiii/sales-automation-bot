@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 # for tests purpose
-from data_loader import load_data
-from data_processor import validate_data
+from src.core.data_loader import load_data
+from src.core.data_processor import validate_data
 
 def generate_diagram(title, data):
     fig = px.line(data, x=data.index, y="Total cost", title=f"title")
