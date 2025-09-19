@@ -3,7 +3,6 @@ import logging
 from telegram import Update, InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import filters, ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, InlineQueryHandler
 from config import Config
-from uuid import uuid4
 
 from data_loader import load_data
 from data_processor import validate_data, update_total_cost_column

@@ -71,7 +71,7 @@ def validate_data(df):
                     errors.append(f"{column}: Error cell empty")
 
                 if rules["type"] in [int, float]:
-                    if not pd.api.types.is_numeric_dtype(type(row[column])):
+                    if not pd.api.types.is_numeric_dtype(df_copy[column]):
                         errors.append(f"{column}: Error data type")
 
                 if "min" in rules and not pd.isnull(row[column]) and row[column] < rules["min"]:
@@ -97,6 +97,8 @@ def update_total_cost_column(df):
     if df.empty:
         raise ValueError("DataFrame is empty")
 
+    df["Quantity"] = pd.to_numeric(df["Quantity"], errors="coerce")
+    df["Price"] = pd.to_numeric(df["Price"], errors="coerce")
     df["Total cost"] = df["Quantity"] * df["Price"]
 
     # df = df.fillna("")

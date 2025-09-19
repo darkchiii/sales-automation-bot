@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import plotly.express as px
 
+# for tests purpose
+from data_loader import load_data
+from data_processor import validate_data
+
 def generate_diagram(title, data):
     fig = px.line(data, x=data.index, y="Total cost", title=f"title")
     fig.show()
@@ -26,23 +30,42 @@ def get_daily_sales(df):
 # Sales analysis; define time period in days or start and end date of time you are interested in
 def sales_analysis(df, time_period=None, start_date=None, end_date=None):
     df_copy = df.copy()
-    if time_period is not None and (start_date is not None or end_date is not None):
-        raise ValueError("Podaj albo time_period, albo start_date i end_date, nie oba naraz")
     df_copy["Date"] = pd.to_datetime(df_copy["Date"])
+
+    if time_period is not None and (start_date is not None or end_date is not None):
+        raise ValueError("You can check the time period or results from a specific date to a specific date, not all at once.")
+    if time_period is not None and time_period < 0:
+        raise ValueError("Time period can't be negative value.")
+    if start_date and end_date and start_date > end_date:
+        raise ValueError("Start date must be earlier than end date.")
 
     if time_period:
         # time_period = 30
         start_date = datetime.now() - timedelta(time_period)
-
         filtered_data = df_copy[df_copy["Date"] >= start_date]
-        # sales_sum = filtered_data["Total cost"].sum()
-        sales_daily = filtered_data.groupby("Date")["Total cost"].sum().reset_index()
+        # Check if filtered data has rows
+        if filtered_data.empty:
+            raise ValueError("There is no data to show in chosen time period")
 
-        # sales = df_copy[df_copy["Date"] >= start_date].groupby("Date")["Total cost"].sum()
-        return sales_daily
+        total_cost = filtered_data["Total cost"].sum()
+        sales_daily = filtered_data.groupby("Date")["Total cost"].sum().reset_index()
+        return sales_daily, total_cost
+
     elif start_date and end_date:
-        sales = df_copy[(df_copy["Date"] >= start_date) & (df_copy["Date"] <= end_date)].groupby("Date")["Total cost"].sum()
-        return sales
+        start_date = pd.to_datetime(start_date)
+        end_date = pd.to_datetime(end_date)
+
+        filtered_data = df_copy[(df_copy["Date"] >= start_date) & (df_copy["Date"] <= end_date)]
+        if filtered_data.empty:
+            raise ValueError("There is no data to show in chosen time period")
+
+        sales_daily = filtered_data.groupby("Date")["Total cost"].sum().reset_index()
+        total_cost = filtered_data["Total cost"].sum()
+
+        return sales_daily, total_cost
+    else:
+        raise ValueError("You must provide either time_period OR start_date and end_date.")
+
 
 # Product performance analysis; define time period in days or start and end date of time you are interested in
 def products_performance(df, time_period=None, start_date=None, end_date=None):
@@ -91,16 +114,22 @@ if __name__ == "__main__":
     # Test data
 
     import pandas as pd
-    today = datetime.now().date()
+    # today = datetime.now().date()
 
-    test_data = {
-        'Date': [today, today - timedelta(1), today - timedelta(2)] * 2,
-        'Total cost': [100, 200, 150, 50, 75, 25]
-    }
-    df = pd.DataFrame(test_data)
+    # test_data = {
+    #     'Date': [today, today - timedelta(1), today - timedelta(2)] * 2,
+    #     'Total cost': [100, 200, 150, 50, 75, 25]
+    # }
+    # df = pd.DataFrame(test_data)
 
-    daily, total = sales_analysis(df, time_period=7)
-    print(f"Total sum: {total}")
-    print(f"Daily breakdown:")
-    print(daily)
-    print(f"Daily as dict: {daily.to_dict()}")
+    # daily, total = sales_analysis(df, time_period=7)
+    # print(f"Total sum: {total}")
+    # print(f"Daily breakdown:")
+    # print(daily)
+    # print(f"Daily as dict: {daily.to_dict()}")
+    df, sheet = load_data()
+    # clean_df, errors_list = validate_data(df)
+    # df_copy = clean_df.copy()
+
+    # daily, sum=sales_analysis(clean_df, time_period=1)
+    # print(f"Total sum: {sum} \nDaily sales: {daily}")

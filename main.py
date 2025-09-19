@@ -70,5 +70,5 @@ def main():
     #     clean_df, errors = result
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
