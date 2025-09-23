@@ -44,7 +44,7 @@ def main():
 
     if st.checkbox('Show data:'):
         chart_data = clean_df
-        chart_data
+        st.dataframe(chart_data)
 
     option_analysis = st.selectbox(
         "Now we can start analyzing. What would you want to see?", # Pokazywać dopiero po przygptpwaniu danych?

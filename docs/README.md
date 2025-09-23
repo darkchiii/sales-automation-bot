@@ -1,231 +1,228 @@
 # Sales Analytics & Automation Bot
 
-A comprehensive sales analytics system with Google Sheets integration, data validation, and automated Telegram bot reporting. This project was created to enhance skills with numpy, pandas, work with large datasets, and develop commercial Telegram bots for clients.
+A comprehensive sales analytics system with Google Sheets integration, data validation and automated reporting capabilities. The system provides three different interfaces: command-line interface, web application with Streamlit, and Telegram bot for automated reporting.
 
-## Why I made this project?
+## Overview
 
-This project was developed to:
+This project was developed to deepen expertise with data analysis libraries, build real-world analytical systems and create commercial-grade automation solutions for business intelligence.
 
-* **Deepen expertise** with numpy, pandas, and large dataset manipulation
-* **Develop analytical system skills** for real-world applications
-* **Prepare for commercial projects** - Telegram bots for business clients
-* **Master external API integration** (Google Sheets, Telegram)
-* **Build automated reporting systems** for business intelligence
+## Features
 
-## Current Features
+### Core Analytics Engine
+- **Daily Sales Reports**: Comprehensive day-by-day sales analysis with trend visualization
+- **Time-Period Analysis**: Flexible reporting for last N days or custom date ranges
+- **Product Performance**: Ranking by quantity sold, order count, and total revenue
+- **Customer Analytics**: Activity tracking with purchase history
 
-### Sales Analytics
+### Data Processing & Validation
+- **Automatic Data Validation**: Business rule enforcement with error detection
+- **Data Quality Assurance**: Empty field detection, type validation, and range checking
+- **Error Reporting**: Direct error flagging written to Google Sheets for tracking
+- **Calculated Fields**: Automatic total cost computation and derived metrics
 
-* **Daily reports** - day-by-day sales analysis
-* **Trend analysis** - flexible time periods (last N days or date ranges)
-* **Top products** - ranking by quantity, orders, and revenue
-* **Best customers** - activity and value analysis with engagement metrics
+### Multi-Interface Access
 
-### Data Validation & Processing
+#### 1. Command Line Interface (CLI)
+- Interactive data analysis through terminal
+- Direct Google Sheets integration
+- Real-time data validation and processing
+- Batch operations for data cleanup
 
-* **Automatic validation** of all records against business rules
-* **Error detection** - empty fields, invalid data types, out-of-range values
-* **Error flagging** - written directly to Google Sheets for tracking
-* **Automatic calculations** - total order costs and derived metrics
+#### 2. Web Application (Streamlit)
+- User-friendly web interface
+- Interactive data visualization
+- Real-time chart generation
+- Configurable analysis parameters
 
-### Data Visualization
+#### 3. Telegram Bot Integration
+- Automated daily reports via Telegram
+- On-demand trend analysis with `/trend` command
+- Top products reporting with `/top_products`
+- Interactive chart delivery directly in chat
 
-* **Interactive charts** using Plotly with professional styling
-* **Flexible parameters** - customizable titles, date ranges, and chart types
-* **Data export** - ready for further processing and analysis
+## Technical Stack
 
-## Still working on
+### Core Technologies
+- **Python 3.9+**: Primary development language
+- **Pandas**: Data manipulation and analysis
+- **NumPy**: Numerical computations
+- **Plotly**: Interactive data visualizations
 
-* Telegram bot integration with commands for trends, orders, and reports
-* Sending charts, tables, and formatted reports directly in Telegram
-* Secure user authentication for bot access
-* Automated scheduling of daily reports (e.g., at 9:00 AM)
-* Multi-channel delivery to users, groups, and channels
-* Smart notifications and alerts for anomalies or trends
-* Automated file attachments (charts, CSV exports)
+### Integration & APIs
+- **Google Sheets API**: Spreadsheet data source integration
+- **gspread**: Simplified Google Sheets handling
+- **python-telegram-bot**: Telegram automation
+- **Streamlit**: Web application framework
 
-## Tech Stack
-
-* **Python 3.9+** - Core language
-* **Pandas** - Data analysis and manipulation
-* **NumPy** - Numerical computations
-* **Plotly** - Interactive data visualizations
-* **Google Sheets API** - Spreadsheet integration
-* **gspread** - Simplified Google Sheets handling
-* **python-dotenv** - Environment variable management
-* **APScheduler** *(planned)* - Task scheduling
-* **python-telegram-bot** *(planned)* - Telegram integration
-
-##  Dependencies
-
-Dependencies are managed with **uv** and fully tracked in `uv.lock`. Key packages include:
-
-* **pandas** - Data analysis and manipulation
-* **numpy** - Numerical computations
-* **plotly** - Interactive visualizations
-* **gspread** - Google Sheets integration
-* **google-auth** - Google API authentication
-* **python-dotenv** - Environment variables
+### Development Tools
+- **uv**: Modern Python package management
+- **python-dotenv**: Environment configuration management
+- **matplotlib**: Additional plotting capabilities
 
 ## Installation
 
-1. **Clone the repository:**
+### Prerequisites
+- Python 3.9 or higher
+- Google Cloud Platform account for Sheets API
+- Telegram Bot Token (for bot functionality)
 
+### Setup Process
+
+1. **Clone Repository**
 ```bash
 git clone https://github.com/darkchiii/sales-automation-bot.git
-cd sales-automation-bot
+cd sales-analytics-automation-bot
 ```
 
-2. **Install uv (if not already installed):**
-
+2. **Install Dependencies**
 ```bash
-# macOS/Linux
+# Install uv package manager
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Windows
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-# Or via pip
-pip install uv
-```
-
-3. **Install dependencies with uv:**
-
-```bash
+# Install project dependencies
 uv sync
 ```
 
-4. **Google Sheets API setup:**
+3. **Google Sheets API Configuration**
+   - Create project in [Google Cloud Console](https://console.cloud.google.com)
+   - Enable Google Sheets API and Google Drive API
+   - Create Service Account and download JSON credentials
+   - Save credentials as `credentials.json` in project root
 
-   * Create a project in [Google Cloud Console](https://console.cloud.google.com)
-   * Enable Google Sheets API and Google Drive API
-   * Create a Service Account and download the JSON key
-   * Save the key as `credentials.json` in the root directory
-
-5. **Environment configuration:**
-
+4. **Environment Configuration**
 ```bash
-# Create .env file
+# Create environment file
 cp .env.example .env
-# Edit .env with your configuration
 ```
 
-`.env` file structure:
-
+Configure `.env` file:
 ```env
-SPREADSHEET_KEY=your_google_sheets_key
-TELEGRAM_BOT_TOKEN=your_bot_token  # (planned)
-CHAT_ID=your_chat_id              # (planned)
+SPREADSHEET_KEY=your_google_sheets_document_key
+TELEGRAM_TOKEN=your_telegram_bot_token
 ```
 
 ## Usage
 
-### Basic execution
-
+### Command Line Interface
 ```bash
-python main.py
+python -m src.interfaces.cli
 ```
 
-### Module import
+Interactive CLI provides:
+- Data loading and validation
+- Error reporting and correction
+- Analytics generation
+- Direct Google Sheets updates
 
-```python
-from data_loader import load_data
-from analytics import get_daily_sales, products_performance, top_customers
-
-# Load data
-df, sheet = load_data()
-
-# Daily sales analysis
-daily_sales = get_daily_sales(df)
-
-# Product performance
-top_products = products_performance(df, time_period=30)
-
-# Customer analysis
-best_customers = top_customers(df)
+### Web Application
+```bash
+streamlit run streamlit_app.py
 ```
 
-### Data validation
+Web interface features:
+- Interactive data exploration
+- Visual analytics dashboard
+- Configurable reporting parameters
+- Real-time chart generation
 
-```python
-from data_processor import validate_data, update_total_cost_column
-
-# Validate and clean data
-clean_df, errors = validate_data(df)
-if errors:
-    print(f"Found {len(errors)} validation errors")
-
-# Update calculated fields
-update_total_cost_column(clean_df)
+### Telegram Bot
+```bash
+python -m src.interfaces.telegram_bot
 ```
+
+Available bot commands:
+- `/start` - Initialize bot interaction
+- `/daily_sales` - Get recent daily sales summary
+- `/trend <days>` - Generate sales trend chart for specified period
+- `/top_products <days>` - List top-performing products
 
 ## Project Structure
 
 ```
-sales-automation-bot/
-├──  data/                    # Sample data files
-│   └── orders_demo.csv         # Demo dataset
-├──  analytics.py             # Sales analysis functions
-├──  config.py                # Configuration management
-├──  data_loader.py           # Google Sheets integration
-├──  data_processor.py        # Data validation & processing
-├──  main.py                  # Main execution script
-├──  reports.py               # Report generation (planned)
-├──  requirements.txt         # Python dependencies
-├──  .env.example             # Environment template
-├──  README.md                # Project documentation
-└──  credentials.json         # Google API credentials (excluded)
+sales-analytics-automation-bot/
+├── data/                       # Sample datasets
+│   └── orders_demo.csv           # Demo sales data
+├── docs/                       # Documentation
+│   └── README.md                 # Project documentation
+├── src/                        # Source code
+│   ├── core/                     # Core business logic
+│   │   ├── analytics.py            # Sales analysis functions
+│   │   ├── data_loader.py          # Google Sheets integration
+│   │   └── data_processor.py       # Data validation & processing
+│   ├── interfaces/               # User interfaces
+│   │   ├── cli.py                  # Command-line interface
+│   │   ├── telegram_bot.py         # Telegram bot implementation
+│   │   └── web_app.py              # Streamlit web application
+│   └── utils/                    # Utilities and configuration
+│       └── config.py               # Configuration management
+├── streamlit_app.py            # Streamlit application entry point
+├── credentials.json            # Google API credentials (excluded from git)
+├── pyproject.toml              # Project configuration
+└── uv.lock                     # Dependency lock file
 ```
 
-##  Configuration
+## Data Validation Rules
 
-### Chart settings (`config.py`)
+The system enforces comprehensive data validation:
 
-```python
-class Config:
-    CHART_WIDTH = 800
-    CHART_HEIGHT = 500
-    DEFAULT_TREND_DAYS = 30
-    DEFAULT_DAILY_DAYS = 7
-```
+- **OrderID**: Required integer, minimum value 1
+- **CustomerName**: Required string field
+- **Product**: Required product name
+- **Quantity**: Required integer, minimum value 1
+- **Price**: Required numeric value, minimum value 0
+- **Date**: Required valid date format
 
-### Data validation rules (`data_processor.py`)
+## Available Analytics
 
-* **OrderID**: Required integer, minimum value 1
-* **Product**: Required string
-* **Quantity**: Required integer, minimum value 1
-* **Price**: Required number, minimum value 0
-* **Date**: Required valid date format
-
-##  Available Analytics
-
-### Daily Sales Report
-
+### Daily Sales Analysis
 ```python
 daily_sales = get_daily_sales(df)
-# Returns: Date-indexed series with daily totals
+# Returns: Date-indexed series with daily revenue totals
 ```
 
-### Sales Trend Analysis
-
+### Trend Analysis
 ```python
-# Last 30 days
-trend = sales_analysis(df, time_period=30)
+# Last 30 days trend
+trend_data, total = sales_analysis(df, time_period=30)
 
-# Specific date range
-trend = sales_analysis(df, start_date="2025-08-01", end_date="2025-08-31")
+# Custom date range
+trend_data, total = sales_analysis(df, start_date="2025-08-01", end_date="2025-08-31")
 ```
 
 ### Product Performance
-
 ```python
 products = products_performance(df, time_period=30)
 # Returns: DataFrame with total_quantity, num_orders, total_revenue
 ```
 
-### Customer Analysis
-
+### Customer Intelligence
 ```python
 customers = top_customers(df)
 # Returns: DataFrame with num_orders, orders_cost, days_since_last_order
 ```
+
+## Configuration
+
+### Chart Settings
+Configurable visualization parameters in `src/utils/config.py`:
+```python
+CHART_WIDTH = 800
+CHART_HEIGHT = 500
+DEFAULT_TREND_DAYS = 30
+DEFAULT_DAILY_DAYS = 7
+```
+
+## Development Status
+
+### Current Features
+- Complete data validation and processing pipeline
+- Google Sheets integration with error reporting
+- Three fully functional interfaces (CLI, Web, Telegram)
+- Interactive data visualizations
+- Flexible time-period analysis
+
+### Future Enhancements
+- Automated report scheduling
+- Advanced anomaly detection
+- Enhanced security features
+- Performance optimization for large datasets
