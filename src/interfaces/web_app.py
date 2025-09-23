@@ -6,7 +6,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from src.core.data_loader import load_data
+from src.core.data_loader import load_data_web
 from src.core.analytics import get_daily_sales, sales_analysis, products_performance, top_customers
 from src.core.data_processor import validate_data, update_total_cost_column, save_to_sheets
 import pandas as pd
@@ -17,7 +17,7 @@ from datetime import date
 
 
 def main():
-    df, sheet = load_data()
+    df, sheet = load_data_web()
     clean_df, errors_list = validate_data(df)
 
     if errors_list:
