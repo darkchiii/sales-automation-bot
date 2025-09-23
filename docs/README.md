@@ -117,7 +117,7 @@ Interactive CLI provides:
 
 ### Web Application
 
-Link:
+Link: https://sales-analysis-automation.streamlit.app/
 
 ![Image of Visualization App 1](https://github.com/darkchiii/sales-automation-bot/blob/main/data/screenshots/1.png)
 
