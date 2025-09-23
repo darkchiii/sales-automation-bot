@@ -33,6 +33,7 @@ This project was developed to deepen expertise with data analysis libraries, bui
 - Interactive data visualization
 - Real-time chart generation
 - Configurable analysis parameters
+- Link: https://sales-analysis-automation.streamlit.app/
 
 #### 3. Telegram Bot Integration
 - Automated daily reports via Telegram
@@ -115,9 +116,12 @@ Interactive CLI provides:
 - Direct Google Sheets updates
 
 ### Web Application
-```bash
-streamlit run streamlit_app.py
-```
+
+Link:
+
+![Image of Visualization App 1](https://github.com/darkchiii/sales-automation-bot/blob/main/data/screenshots/1.png)
+
+![Image of Visualization App 1](https://github.com/darkchiii/sales-automation-bot/blob/main/data/screenshots/2.png)
 
 Web interface features:
 - Interactive data exploration
